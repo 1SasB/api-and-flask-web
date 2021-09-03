@@ -52,7 +52,9 @@ def create_a_user():
 @app.route("/user/delete/<int:id>")
 def delete(id):
     info = requests.delete('http://127.0.0.1:5000/users/'+str(id))
-    return redirect('/home')
+    if info.status_code == 200:
+        return redirect('/home')
+    return render_template('delete_error.html')
 
 
 @app.route("/user/update/<int:id>", methods=["GET", "POST"])
