@@ -20,13 +20,18 @@ def get_all_users():
 def get_a_users(id):
     json_file = open('MOCK_DATA.json')
     mock_data = json.load(json_file)
+    print(mock_data[:5])
+    print(id)
     for i in mock_data:
-        if i['id'] == id:
-            user = i
-            return {"data": [user]}, 200  # return a user and 200 OK
-        else:
-            user = {'message':"There is no user with the specified id"}
-            return {"data": [user]}, 404  # return a message and 204 Not Found
+        if int(id) == i['id']:
+            print("found id")
+            return {"data": [i]}, 200 
+        # data = {'message':"There is no user with the specified id"}
+        # return {"data": [data]},404
+     # return a user and 200 OK
+        
+        # user = {'message':"There is no user with the specified id"}
+        # return {"data": [user]}, 404  # return a message and 204 Not Found
 
 
 # create a user enpoint
@@ -69,7 +74,7 @@ def patch(id):
     json_file.seek(0)
     json.dump(mock_data,json_file)
     json_file.close()
-
+    json_file.truncate()
 
     return {'user': [mock_data['id' == id]]}, 201
 
