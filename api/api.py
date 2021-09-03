@@ -21,8 +21,11 @@ def get_a_users(id):
     for i in mock_data:
         if i['id'] == id:
             user = i
+            return {"data": [user]}, 200  # return a user and 200 OK
+        else:
+            user = {'message':"There is no user with the specified id"}
+            return {"data": [user]}, 404  # return a user and 200 OK
 
-    return {"data": [user]}, 200  # return a user and 200 OK
 
 @app.route('/users', methods=['POST'])
 def post():
@@ -89,4 +92,4 @@ def delete_a_user(id):
 
 
 if __name__ == '__main__':
-    app.run()  
+    app.run(debug=True)  
