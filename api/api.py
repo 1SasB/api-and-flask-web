@@ -43,7 +43,7 @@ def post():
     print(type(mock_data))
 
     mock_data.append(request_data)
-
+    json_file.seek(0)
     json.dump(mock_data, json_file)
     json_file.close()
 
