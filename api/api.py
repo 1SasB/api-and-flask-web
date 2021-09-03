@@ -39,6 +39,9 @@ def post():
     last_id = mock_data[-1]['id']     #get last id in the data
     request_data['id'] = last_id + 1  #auto increase id when client creates a user
 
+    print(request_data)
+    print(type(mock_data))
+
     mock_data.append(request_data)
 
     json.dump(mock_data, json_file)
@@ -71,6 +74,7 @@ def patch(id):
 
 
 
+#delete a specific user
 
 @app.route('/users/<int:id>', methods=['DELETE'])
 def delete_a_user(id):
