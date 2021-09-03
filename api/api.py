@@ -73,8 +73,12 @@ def patch(id):
 
     json_file.seek(0)
     json.dump(mock_data,json_file)
-    json_file.close()
     json_file.truncate()
+    json_file.close()
+
+    # jsonFile_1 = open('MOCK_DATA.json', "w+")
+    # jsonFile_1.write(json.dumps(mock_data))
+    # jsonFile_1.close()
 
     return {'user': [mock_data['id' == id]]}, 201
 
