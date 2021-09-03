@@ -58,7 +58,6 @@ def patch(id):
     update_keys = update.keys()
     json_file = open('MOCK_DATA.json', 'r+')
     mock_data = json.load(json_file)
-    json_file.close()
 
     for i in mock_data:
         if i['id'] == id:
@@ -66,9 +65,11 @@ def patch(id):
             for j in update_keys:
                 i[j] = update[j] 
 
-    json_file_a = open('MOCK_DATA.json', 'w')
-    json.dump(mock_data,json_file_a)
-    json_file_a.close()
+
+    json_file.seek(0)
+    json.dump(mock_data,json_file)
+    json_file.close()
+
 
     return {'user': [mock_data['id' == id]]}, 201
 
