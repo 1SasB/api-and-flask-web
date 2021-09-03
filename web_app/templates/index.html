@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Users</title>
+{% endblock %}
+
+{% block content %}
+        
+        <h1>Table showing first 15 Users</h1>
+        <a class="btn btn-primary my-2 my-sm-0" href="user/create">Create New User</a>
+        {% if not users %}
+            <h4>There are no Users. Create one below</h4>
+        {% else %}
+        <table class="table">
+            <tr>
+                <th>First_Name</th>
+                <th>Last_name</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Gender</th>
+            </tr>
+            {% for user in users.data[:15] %}
+                <tr>
+                    <td>{{user.first_name}}</td>
+                    <td>{{user.last_name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.age}}</td>
+                    <td>{{user.gender}}</td>
+                    <td>
+                        <a class="btn btn-primary" href="user/update/{{user.id}}">Update</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" href="user/delete/{{user.id}}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+  
+{% endblock %}
